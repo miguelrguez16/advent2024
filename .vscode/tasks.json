@@ -1,0 +1,45 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Start",
+            "command": "npm run dev",
+            "options": {
+                "statusbar": {
+                    "color": "#5eff00"
+                }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Build",
+            "command": "npm run build",
+            "options": {
+                "statusbar": {
+                    "color": "#ffbb00"
+                }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Test",
+            "command": "npm run test",
+            "options": {
+                "statusbar": {
+                    "color": "#1bd0dd"
+                }
+            }
+        },
+        {
+            "type": "shell",
+            "label": "Test Coverage",
+            "command": "npm run coverage",
+            "options": {
+                "statusbar": {
+                    "color": "#ffbb00"
+                }
+            }
+        }
+    ]
+}
