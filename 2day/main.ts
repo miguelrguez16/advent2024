@@ -3,9 +3,12 @@ function createFrame(names: string[]): string {
     const SPACE = ' ';
     const BREAK_LINE = '\n';
 
-    const columns =
-        names.reduce((maxLength, word) => Math.max(maxLength, word.length), 0) +
-        4;
+    // const columns =
+    // names.reduce((maxLength, word) => Math.max(maxLength, word.length), 0) + 4;
+
+    const orderedWords = Array.from(names).sort((a, b) => b.length - a.length);
+    // console.log(orderedWords);
+    const columns = orderedWords.at(0).length + 4;
 
     const empty = STAR.repeat(columns).concat(BREAK_LINE);
     let result = empty;
