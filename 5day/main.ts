@@ -31,16 +31,25 @@ function organizeShoes(shoes: Shoe): number[] {
     const pairs = [];
 
     // Agrupar por tamaño
-    shoes.forEach((shoe) => {
-        sizeCounts[shoe.size] = sizeCounts[shoe.size] || { left: 0, right: 0 };
-        sizeCounts[shoe.size][shoe.type === 'I' ? 'left' : 'right']++;
-    });
+    // shoes.forEach((shoe) => {
+    //     sizeCounts[shoe.size] = sizeCounts[shoe.size] || { left: 0, right: 0 };
+    //     sizeCounts[shoe.size][shoe.type === 'I' ? 'left' : 'right']++;
+    // });
 
-    console.log(sizeCounts);
+    const pata = shoes.reduce((acumulator, { size, type }) => {
+        if (!acumulator[size]) {
+            acumulator[size] = { left: 0, right: 0 };
+        }
+        acumulator[size][type === 'I' ? 'left' : 'right']++;
+        return acumulator;
+    }, {} as Record<string, { left: number; right: number }>);
+
+    // console.log(pata);
+    // console.log(sizeCounts);
 
     // Emparejar
-    for (const size in sizeCounts) {
-        let { left, right } = sizeCounts[size];
+    for (const size in pata) {
+        let { left, right } = pata[size];
         while (left > 0 && right > 0) {
             pairs.push(parseInt(size));
             left--;
