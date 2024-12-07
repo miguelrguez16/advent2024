@@ -1,8 +1,22 @@
 type Inventory = Array<{ name: string; quantity: number; category: string }>;
 
 function organizeInventory(inventory: Inventory): object {
-    // Code here
-    return {};
+    const grouped = inventory.reduce((acumulator, currentValue) => {
+        const { category, quantity, name } = currentValue;
+
+        if (!acumulator[category]) {
+            acumulator[category] = {};
+        }
+
+        if (!acumulator[category][name]) {
+            acumulator[category][name] = 0;
+        }
+
+        acumulator[category][name] += quantity;
+        return acumulator;
+    }, {} as Record<string, Record<string, number>>); // Valor inicial
+
+    return grouped;
 }
 
 const inventory = [
@@ -12,4 +26,11 @@ const inventory = [
     { name: 'car', quantity: 2, category: 'toys' },
     { name: 'racket', quantity: 4, category: 'sports' }
 ];
-organizeInventory(inventory);
+console.log(organizeInventory(inventory));
+const inventory2 = [
+    { name: 'book', quantity: 10, category: 'education' },
+    { name: 'book', quantity: 5, category: 'education' },
+    { name: 'paint', quantity: 3, category: 'art' }
+];
+
+console.log(organizeInventory(inventory2));
