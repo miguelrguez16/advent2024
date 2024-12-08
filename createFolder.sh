@@ -30,6 +30,8 @@ echo "console.log('Hola, mundo desde main.ts');" > "${CARPETA}/main.ts"
 # Crear el archivo README.md con contenido inicial
 echo "# DAY ${NUMERO}" > "${CARPETA}/README.md"
 echo "" >> "${CARPETA}/README.md"
+echo "## TEST" >> "${CARPETA}/README.md"
+echo "" >> "${CARPETA}/README.md"
 echo "Este proyecto fue generado automáticamente." >> "${CARPETA}/README.md"
 
 # Mostrar mensaje de éxito
