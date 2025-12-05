@@ -21,7 +21,6 @@ También existe el bloque especial `[<]`, que repite el dígito del bloque anter
 
 Si al final hay menos de 4 dígitos, se debe devolver null.
 
-
 ```TypeScript
 decodeSantaPin('[1++][2-][3+][<]')
 // "3144"
