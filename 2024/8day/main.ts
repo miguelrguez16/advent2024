@@ -5,27 +5,18 @@
  */
 function drawRace(indices: number[], length: number): string {
     const RENO = "r"
-    const base: string[] = Array(length).fill("~")
-    const emptyBase = base.join("")
-    const struct = Array(indices.length)
+    const TRACK = "~"
 
-    for (let i = 0; i < indices.length; i++) {
-        const element = indices[i];
+    return indices.map((position, index) => {
+        const track = Array(length).fill(TRACK)
 
-        if (element === 0) {
-            struct[i] = emptyBase.padStart(length + indices.length - i - 1) + ` /${i + 1}`
-        } else if (element > 0) {
-            const temporal = Array.from(base)
-            temporal[element] = RENO
-            struct[i] = temporal.join("").padStart(length + indices.length - i - 1) + ` /${i + 1}`
-        } else {
-            const minus = Array.from(base)
-            minus[length + element] = RENO
-            struct[i] = minus.join("").padStart(length + indices.length - i - 1) + ` /${i + 1}`
+        if (position !== 0) {
+            track[length + position] = RENO
         }
 
-    }
-    return struct.join("\n")
+        const line = track.join("")
+        return line.padStart(length + indices.length - index - 1) + ` /${index + 1}`
+    }).join("\n")
 }
 
 
@@ -53,3 +44,35 @@ console.log(drawRace([3, 7, -2], 12))
 ~~~~~~~~~~r~ /3
 */
 console.log("\n\n")
+
+
+
+/**
+ * @param {number[]} indices - The reno indices
+ * @param {number} length - The length of the race
+ * @returns {string} The reno race
+ */
+function drawRace2(indices: number[], length: number): string {
+    const RENO = "r"
+    const base: string[] = Array(length).fill("~")
+    const emptyBase = base.join("")
+    const struct = Array(indices.length)
+
+    for (let i = 0; i < indices.length; i++) {
+        const element = indices[i];
+
+        if (element === 0) {
+            struct[i] = emptyBase.padStart(length + indices.length - i - 1) + ` /${i + 1}`
+        } else if (element > 0) {
+            const temporal = Array.from(base)
+            temporal[element] = RENO
+            struct[i] = temporal.join("").padStart(length + indices.length - i - 1) + ` /${i + 1}`
+        } else {
+            const minus = Array.from(base)
+            minus[length + element] = RENO
+            struct[i] = minus.join("").padStart(length + indices.length - i - 1) + ` /${i + 1}`
+        }
+
+    }
+    return struct.join("\n")
+}
