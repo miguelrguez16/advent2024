@@ -14,10 +14,13 @@ function matchGloves(gloves: Glove[]): string[] {
             rightGloveCounts.set(glove.color, (rightGloveCounts.get(glove.color) || 0) + 1)
         }
     }
-    console.log("Left glove counts:", leftGloveCounts)
-    console.log("Right glove counts:", rightGloveCounts)
-    // Find matching pairs for all unique colors
-    const allColors = new Set(gloves[0]?.hand === 'L' ? [...leftGloveCounts.keys(), ...rightGloveCounts.keys()] : [...rightGloveCounts.keys(), ...leftGloveCounts.keys()])
+    console.debug("Left glove counts:", leftGloveCounts)
+    console.debug("Right glove counts:", rightGloveCounts)
+    // 
+    const allColors = new Set(gloves[0]?.hand === 'L'
+        ? [...leftGloveCounts.keys(), ...rightGloveCounts.keys()]
+        : [...rightGloveCounts.keys(), ...leftGloveCounts.keys()]
+    )
 
     for (const color of allColors) {
         const leftCount = leftGloveCounts.get(color) ?? 0
