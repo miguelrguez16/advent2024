@@ -4,7 +4,6 @@ const gifts2 = ['#broken', '#rusty']
 const gifts3: string[] = []
 
 const filterGifts = (gifts: string[]): string[] => {
-    // Code here
     return gifts.filter(g => !g.includes("#"));
 }
 
