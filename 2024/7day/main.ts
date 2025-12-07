@@ -1,20 +1,17 @@
 function fixPackages(packages: string): string {
-    let saveProgress: string[] = [];
-    let current: string = '';
+    let result = packages;
 
-    for (const char of packages) {
-        if (char === '(') {
-            saveProgress.push(current);
-            current = ''; // reset
-        } else if (char === ')') {
-            const reversed = current.split('').reverse().join('');
-            current = saveProgress.pop()! + reversed;
-        } else {
-            current += char;
-        }
+    // Mientras haya paréntesis, busca los más internos y voltéalos
+    while (result.includes('(')) {
+        // Encuentra el paréntesis de apertura más interno (sin paréntesis después)
+        result = result.replace(/\([^()]*\)/g, (match) => {
+            // match incluye los paréntesis, así que los removemos y volteamos el contenido
+            const content = match.slice(1, -1); // Elimina '(' y ')'
+            return content.split('').reverse().join('');
+        });
     }
 
-    return current;
+    return result;
 }
 console.log(fixPackages('a(cb)de') === 'abcde');
 // ➞ "abcde"
