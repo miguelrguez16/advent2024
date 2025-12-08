@@ -14,10 +14,8 @@ function matchGloves(gloves: Glove[]): string[] {
             rightGloveCounts.set(glove.color, (rightGloveCounts.get(glove.color) || 0) + 1)
         }
     }
-    console.debug("Left glove counts:", leftGloveCounts)
-    console.debug("Right glove counts:", rightGloveCounts)
-    // 
-    const allColors = new Set(gloves[0]?.hand === 'L'
+
+    const allColors = new Set(gloves[0]?.hand === 'L' // Determine iteration order based on first glove's hand
         ? [...leftGloveCounts.keys(), ...rightGloveCounts.keys()]
         : [...rightGloveCounts.keys(), ...leftGloveCounts.keys()]
     )
