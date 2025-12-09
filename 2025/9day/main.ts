@@ -13,8 +13,15 @@ type Result = 'fail' | 'crash' | 'success'
 
 function moveReno(board: Board, moves: Moves): Result {
 
+    // Define constants and movement mappings
     const RENO = '@', OBSTACLE = '#', ITEM = '*', EMPTY = '.'
     const validMoves = new Set(['U', 'D', 'L', 'R'])
+    const moveMap: { [key: string]: { dx: number, dy: number } } = {
+        'U': { dx: 0, dy: -1 }, // Up 
+        'D': { dx: 0, dy: 1 }, // Down
+        'L': { dx: -1, dy: 0 }, // Left
+        'R': { dx: 1, dy: 0 } // Right
+    }
 
     // Validate moves
     for (const move of moves) {
@@ -25,28 +32,26 @@ function moveReno(board: Board, moves: Moves): Result {
 
     let renoPosition = { x: 0, y: 0 }
 
-    const grid = board.trim().split('\n').reduce((acc, row) => {
-        const trimmedRow = row.trim()
-        if (trimmedRow.length > 0) {
-            acc.push(trimmedRow.split(''))
+    const dirtyGrid = board.split('\n')
+    const grid: string[][] = []
+
+    // Validate and build grid, find Reno's initial position
+    for (let y = 0; y < dirtyGrid.length; y++) {
+        const row = dirtyGrid[y].trim()
+        if (row.length === 0) continue
+
+        const rowArray = row.split('')
+        grid.push(rowArray)
+
+        const renoX = rowArray.indexOf(RENO)
+        if (renoX !== -1) {
+            renoPosition = { x: renoX, y: grid.length - 1 }
         }
-
-        if (trimmedRow.includes(RENO)) {
-            renoPosition = { x: trimmedRow.indexOf(RENO), y: acc.length - 1 }
-        }
-        return acc
-    }, [] as string[][])
-
-
-    const moveMap: { [key: string]: { dx: number, dy: number } } = {
-        'U': { dx: 0, dy: -1 }, // Up 
-        'D': { dx: 0, dy: 1 }, // Down
-        'L': { dx: -1, dy: 0 }, // Left
-        'R': { dx: 1, dy: 0 } // Right
     }
 
+    // Process each move
     for (const move of moves) {
-        const { dx, dy } = moveMap[move] || { dx: 0, dy: 0 }
+        const { dx, dy } = moveMap[move]
         const newX = renoPosition.x + dx
         const newY = renoPosition.y + dy
 
