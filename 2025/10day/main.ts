@@ -5,14 +5,15 @@ function maxDepth(s: string): number {
 
     for (const char of s) {
         if (char === '[') {
-            currentDepth++
+            currentDepth++ // Increase depth on opening bracket
             // Update maxDepth if currentDepth exceeds it
             if (currentDepth > maxDepth) {
                 maxDepth = currentDepth
             }
         } else if (char === ']') {
-            currentDepth--
+            currentDepth-- // Decrease depth on closing bracket
             if (currentDepth < 0) {
+                // More closing brackets than opening brackets
                 return -1
             }
         }
