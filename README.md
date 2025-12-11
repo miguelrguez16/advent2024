@@ -19,13 +19,13 @@ Aquí encontrarás mis soluciones para los retos de:
 Todo está ordenadito por carpetas (porque si mi vida es un caos, al menos mi código no debería serlo).
 
 ```bash
-.
 ├── 2024/           # 🕯️ Retos del pasado (pero no olvidado)
 ├── 2025/           # 🚀 El futuro es hoy, viejo
 ├── createFolder.sh # 🤖 Script mágico para vagos (crea carpetas solo)
 ├── main.ts         # 🧠 El cerebro de la operación
 └── ...
 ```
+
 ## 🚀 ¿Cómo arrancar este trineo?
 Si quieres ver si mis soluciones funcionan o si explotan como un petardo en Nochevieja, sigue estos pasos:
 
@@ -36,18 +36,19 @@ Clónate el repo (o dale una estrellita ⭐, que eso da karma navideño):
 git clone [https://github.com/miguelrguez16/advents.git](https://github.com/miguelrguez16/advents.git)
 Instala las dependencias (porque nadie vive del aire, ni siquiera Node):
 
-Bash
-
-Solo necesitas node 
-
-Bash
-
+ 
+```bash
 node main.ts
-O si eres de la vieja escuela y te gusta compilar:
+```
 
-Bash
+### O si eres de la vieja escuela y te gusta compilar:
 
+```bash
+npm i
+node main.ts
 npx tsc ./main.ts && node ./main.js
+```
+
 🛠️ Herramientas de Elfo
 TypeScript: Porque nos gustan los tipos duros (y seguros).
 
