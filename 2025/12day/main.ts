@@ -1,25 +1,25 @@
 function elfBattle(elf1: string, elf2: string): number {
     const ATTACKS: { [key: string]: number } = {
-        A: 1,
-        F: 2,
-        B: 0
+        A: 1, // Normal Attack
+        F: 2, // Strong Attack
+        B: 0 // Block
     };
+    // total rounds is the length of the longer elf's move string
     const totalRounds = Math.max(elf1.length, elf2.length);
 
+
+    let elf1Health = 3, elf2Health = 3;
+
+    // Function to calculate damage dealt by attacker to defender
     const calculateDamage = (attacker: string | undefined, defender: string | undefined): number => {
         if (!attacker) return 0; // No attack if no move
-
         if (attacker === 'A' && defender === 'B') {
             return 0;
         }
-
         return ATTACKS[attacker] || 0;
     };
 
-    let elf1Health = 3;
-    let elf2Health = 3;
-
-
+    // Simulate each round
     for (let round = 0; round < totalRounds; round++) {
         // 1. Calculate damage for this round simultaneously
         const damageToElf2 = calculateDamage(elf1[round], elf2[round]);
@@ -29,11 +29,11 @@ function elfBattle(elf1: string, elf2: string): number {
         elf1Health -= damageToElf1;
 
         // 3. Verify defeat condition
-        if (elf1Health <= 0 || elf2Health <= 0) {
-            break;
-        }
+        if (elf1Health <= 0 || elf2Health <= 0) break;
+
     }
 
+    // Determine the winner
     if (elf1Health > elf2Health) {
         return 1;
     } else if (elf2Health > elf1Health) {
