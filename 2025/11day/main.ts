@@ -1,6 +1,9 @@
 function findUnsafeGifts(warehouse: string[]): number {
     const CAMARA = "#", REGALO = "*", VALID_DIRECTIONS = [
-        [-1, 0], [1, 0], [0, -1], [0, 1]
+        [-1, 0], // up
+        [1, 0],  // down
+        [0, -1], // left
+        [0, 1]   // right
     ]
 
     const validateDirections = (r: number, c: number): boolean => {
